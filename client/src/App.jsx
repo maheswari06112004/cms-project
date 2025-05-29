@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import './App.css'
-import SignUp from './pages/SignUp'
-import SignIn from './pages/SignIn'
+// import SignUp from './pages/SignUp'
+// import SignIn from './pages/SignIn'
+import BasicLayouts from './pages/Layouts/BasicLayouts'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
     <>
-      <SignUp/>
-      <SignIn/>
+      {/* <SignIn/> */}
+      <BasicLayouts/>
+      
     </>
   )
 }
