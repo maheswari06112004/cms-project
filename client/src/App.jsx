@@ -1,17 +1,13 @@
-import { useState } from 'react'
-import './App.css'
-import SignUp from './pages/SignUp'
-import SignIn from './pages/SignIn'
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './routes/AppRoutes';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <SignUp/>
-      <SignIn/>
-    </>
-  )
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
