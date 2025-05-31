@@ -1,17 +1,14 @@
-import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useContext, useEffect } from "react";
+import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router";
 
-function PrivateRoute({ children }) {
-  const location = useLocation();
-  // Replace this with your actual authentication logic
-  const isAuthenticated = false; // This should come from your auth context/state
-  
-  if (!isAuthenticated) {
-    // Redirect to sign-in page with return url
-    return <Navigate to="/sign-in" state={{ from: location }} replace />;
-  }
-  
-  return children;
+export default function PrivateRoute({ children }) {
+    const { isAuth } = useContext(AuthContext);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!isAuth) {
+            navigate('/login');
+        }
+    }, [isAuth]);
+    return children;
 }
-
-export default PrivateRoute;
