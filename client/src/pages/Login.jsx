@@ -1,16 +1,16 @@
-import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router';
+import { useState, useContext } from 'react'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 import AuthContext from '../context/AuthContext';
 
-export default function SignUp() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { register } = useContext(AuthContext);
-
+  const { login } = useContext(AuthContext);
+ 
   function handleSubmit(event) {
     event.preventDefault();
-    register(email, password);
+    login(email, password);
   }
 
   return (
@@ -19,7 +19,7 @@ export default function SignUp() {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sign up</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
         <div className="mb-4">
           <input
             id="email"
@@ -48,7 +48,7 @@ export default function SignUp() {
           type='submit'
           className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors font-semibold"
         >
-          create new account
+          Submit
         </button>
       </form>
     </div>

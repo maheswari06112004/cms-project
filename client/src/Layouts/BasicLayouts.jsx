@@ -1,36 +1,30 @@
-import React from 'react';
+import { Link, Outlet } from "react-router";
 
 function BasicLayouts() {
     return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="flex justify-between items-center p-4 shadow-md bg-white">
-        <div className="text-xl font-bold text-purple-800">
-          {/* Logo */}
-          <span></span>
-        </div>
-        <div className="space-x-4">
-          {/* Auth Buttons */}
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">
-            Sign In
-          </button>
-          <button className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg">
-            Sign Up
-          </button>
-        </div>
-      </header>
-
-      {/* Main Content Placeholder */}
-      <main className="flex-grow p-6">
-        <p className="text-center text-gray-600">Welcome to the app!</p>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-300 p-4 text-center text-sm text-black-500">
-        © 2025 cms. All rights reserved.
-      </footer>
-    </div>
-        
+        <>
+            <header className="bg-black text-white py-4 shadow-md flex flex-col sm:flex-row items-center justify-between px-6">
+                <div className="text-2xl font-semibold flex items-center gap-2">
+                    <span role="img" aria-label="notes">
+                        <Link to={'/home'}>📝</Link>
+                        </span> notes
+                </div>
+                <div className="mt-3 sm:mt-0 flex gap-3">
+                    <div className="bg-black border-2 text-white px-4 py-2 rounded cursor-pointer">
+                        <Link to={'/login'}>sign-in</Link>
+                    </div>
+                    <div className="bg-white text-black px-4 py-2 rounded  cursor-pointer">
+                        <Link to={'/sign-up'}>sign-up</Link>
+                    </div>
+                </div>
+            </header>
+            <main className="">
+                <Outlet />
+            </main>
+            <footer className="bg-gray-100 text-gray-600 py-4 text-center mt-8 border-t">
+                © {new Date().getFullYear()} Notes App. All rights reserved.
+            </footer>
+        </>
     );
 }
 
