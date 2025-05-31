@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const sidebarItems = [
@@ -65,6 +66,46 @@ export default function DashboardLayout({ children }) {
             ))}
           </nav>
         </div>
+
+
+        <div>
+          <SidebarActionButton
+            icon="🚪"
+            text="Logout"
+            isSidebarExpanded={isSidebarExpanded}
+            onClick={() => alert('Logging out...')}
+            defaultColor="text-white"
+            hoverColor="hover:bg-red-500 hover:bg-opacity-30 hover:text-white"
+          />
+
+          <SidebarActionButton
+            icon={isSidebarExpanded ? '⬅️' : '➡️'}
+            text={isSidebarExpanded ? 'Collapse' : 'Expand'}
+            isSidebarExpanded={isSidebarExpanded}
+            onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
+            defaultColor="text-white"
+            hoverColor="hover:bg-purple-500 hover:bg-opacity-30 hover:text-white"
+          />
+        </div>
+      </aside>
+
+      <main className="flex-1 p-10 flex flex-col items-center justify-center text-center text-black">
+        <h1 className="text-4xl font-bold mb-10 drop-shadow-sm">
+          Welcome to Dashboard!
+        </h1>
+
+        {children && (
+          <div className="w-full max-w-3xl text-left bg-white bg-opacity-90 p-6 rounded-xl shadow-xl backdrop-blur-sm text-black">
+            {children}
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+
+
+
 
         <div>
           <SidebarActionButton

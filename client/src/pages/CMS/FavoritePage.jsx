@@ -1,3 +1,20 @@
+
+
+
+import React, { useEffect, useState } from 'react';
+
+export default function FavoritePage() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const storedBooks = JSON.parse(localStorage.getItem('books') || '[]');
+    setBooks(storedBooks);
+  }, []);
+
+  const toggleFavorite = (index) => {
+    const updatedBooks = [...books];
+    updatedBooks[index].favorite = !updatedBooks[index].favorite;
+
 import React, { useEffect, useState } from 'react';
 
 export default function FavoritePage() {
@@ -21,9 +38,26 @@ export default function FavoritePage() {
 
     const updatedBooks = [...books];
     updatedBooks.splice(index, 1);
+
     setBooks(updatedBooks);
     localStorage.setItem('books', JSON.stringify(updatedBooks));
   };
+
+
+  const deleteBook = (index) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this book?');
+    if (!confirmDelete) return;
+
+    const updatedBooks = [...books];
+    updatedBooks.splice(index, 1);
+    setBooks(updatedBooks);
+    localStorage.setItem('books', JSON.stringify(updatedBooks));
+  };
+
+  // Silent update of localStorage ONLY, no UI button or alert
+  useEffect(() => {
+    let storedBooks = JSON.parse(localStorage.getItem('books') || '[]');
+
 
   // Silent update of localStorage ONLY, no UI button or alert
   useEffect(() => {
@@ -53,7 +87,7 @@ export default function FavoritePage() {
                 : 'bg-white border-purple-300 shadow-md'
             }`}
           >
-            {/* Stylish Floating Delete Button */}
+
             <button
               onClick={() => deleteBook(index)}
               className="absolute top-3 right-3 bg-red-100 text-red-600 hover:bg-red-600 hover:text-white rounded-full p-1 shadow-sm transition-all duration-300 opacity-0 group-hover:opacity-100"
@@ -71,7 +105,7 @@ export default function FavoritePage() {
               </svg>
             </button>
 
-            {/* Card content: toggle favorite */}
+
             <div onClick={() => toggleFavorite(index)} className="cursor-pointer">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-purple-800">{book.name}</h2>
@@ -86,7 +120,28 @@ export default function FavoritePage() {
               <p className="text-gray-800 text-sm mb-1">
                 💰 <strong>Cost:</strong> ₹{book.cost}
               </p>
-              <p className="text-gray-800 text-sm">🔢 <strong>Quantity:</strong> {book.quantity}</p>
+
+              <p className="text-gray-800 text-sm mb-1">
+                🔢 <strong>Quantity:</strong> {book.quantity}
+              </p>
+
+          
+              {book.favorite && book.url && (
+                <p className="text-purple-700 text-sm mt-2">
+                  🔗 Official site:{' '}
+                  <a
+                    href={book.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-purple-900"
+                    onClick={e => e.stopPropagation()} 
+                  >
+                    Visit Here
+                  </a>
+                </p>
+              )}
+
+
               <div className="mt-5 text-right font-medium text-purple-600 text-sm italic">
                 {book.favorite ? '💜 Unfavorite' : '🤍 Favorite'}
               </div>
