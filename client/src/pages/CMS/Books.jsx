@@ -1,6 +1,12 @@
 
 
+
 import React, { useState, useEffect } from 'react';
+
+
+
+import React, { useState } from 'react';
+
 
 export default function Books() {
   const [form, setForm] = useState({
@@ -8,8 +14,12 @@ export default function Books() {
     quantity: '',
     cost: '',
     author: '',
+
     type: '',
     url: '',  
+
+    type: ''
+
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -22,12 +32,19 @@ export default function Books() {
     e.preventDefault();
     const books = JSON.parse(localStorage.getItem('books') || '[]');
 
+
     // Add favorite property default to false on new book
     books.push({ ...form, favorite: false });
 
     localStorage.setItem('books', JSON.stringify(books));
     setForm({ name: '', quantity: '', cost: '', author: '', type: '', url: '' }); // reset including url
     setShowModal(true);
+
+    books.push(form);
+    localStorage.setItem('books', JSON.stringify(books));
+    setForm({ name: '', quantity: '', cost: '', author: '', type: '' });
+    setShowModal(true); // Show animated popup
+
   };
 
   useEffect(() => {
@@ -97,6 +114,7 @@ export default function Books() {
         </form>
       </div>
 
+
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
@@ -107,6 +125,17 @@ export default function Books() {
             <button
               onClick={() => setShowModal(false)}
               className="text-sm text-purple-600 hover:underline"
+
+      {/* Animated Modal Popup */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full text-center animate-fadeScale">
+            <h3 className="text-2xl font-bold text-purple-700 mb-2">🎉 Book Added!</h3>
+            <p className="text-gray-600 mb-4">Your book has been successfully saved 📚</p>
+            <button
+              onClick={() => setShowModal(false)}
+              className="bg-purple-600 text-white px-5 py-2 rounded-full hover:bg-purple-700 transition-colors"
+
             >
               Close
             </button>
@@ -126,3 +155,4 @@ export default function Books() {
     </div>
   );
 }
+

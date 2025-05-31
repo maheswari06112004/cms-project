@@ -8,7 +8,7 @@
 import DashboardLayout from './layout/DashboardLayout';
 // import Developerspage from './pages/Developerspage';
 // import Home from './pages/Home';
-// import StatusPage from './pages/component/StatusPage';
+
 // import Books from "./pages/CMS/Books";
 // import Card from "./pages/CMS/Card";
 // import FavoritePage from "./pages/CMS/FavoritePage";
@@ -16,12 +16,12 @@ import DashboardLayout from './layout/DashboardLayout';
 function App() {
   return (
    <>
-   {/* <StatusPage/> */}
+   
    {/* <Home/> */}
    <DashboardLayout/>
    {/* <Developerspage/> */}
-   
-   {/* <Books/> */}
+{/*    
+   <Books/> */}
    {/* <Card/> */}
    {/* <FavoritePage/> */}
    
