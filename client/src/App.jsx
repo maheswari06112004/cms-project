@@ -5,25 +5,25 @@
 
 // import Favorite from "./pages/component/favorite";
 
-// import DashboardLayout from './layout/DashboardLayout';
+import DashboardLayout from './layout/DashboardLayout';
 // import Developerspage from './pages/Developerspage';
 // import Home from './pages/Home';
-// import StatusPage from './pages/component/StatusPage';
+
 // import Books from "./pages/CMS/Books";
 // import Card from "./pages/CMS/Card";
-import FavoritePage from "./pages/CMS/FavoritePage";
+// import FavoritePage from "./pages/CMS/FavoritePage";
 
 function App() {
   return (
    <>
-   {/* <StatusPage/> */}
-   {/* <Home/> */}
-   {/* <DashboardLayout/> */}
-   {/* <Developerspage/> */}
    
-   {/* <Books/> */}
+   {/* <Home/> */}
+   <DashboardLayout/>
+   {/* <Developerspage/> */}
+{/*    
+   <Books/> */}
    {/* <Card/> */}
-   <FavoritePage/>
+   {/* <FavoritePage/> */}
    
    
    </>
